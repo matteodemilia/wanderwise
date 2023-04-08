@@ -1,0 +1,15 @@
+
+* {
+    margin: 0 auto; /* sets initial margin to 0 */
+  }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: var(--grey);
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+  }
