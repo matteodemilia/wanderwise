@@ -92,6 +92,7 @@
   font-weight: bold;
 }
 
+/* [HEADBAR] central three buttons */ 
 .headbarButton {
   background-color: var(--mint); /* Set the background color */
   border: none; /* Remove the border */
@@ -106,6 +107,10 @@
   border-radius: 20px; /* Curves corners of buttons */
 }
 
+/* [HEADBAR] profile icon defaul */
+.profileIcon{
+  width: 50px;
+}
 
 body{
   background-color: var(--lightest-mint);
