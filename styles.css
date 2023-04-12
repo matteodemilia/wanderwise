@@ -1,15 +1,111 @@
+/* Styling variables */
+:root{
+  --black: #202426;
+  --white: #ffffff;
+  --light-white: #f4f4f4;
+  --lighter-white: #e9e9e9;
+  --ashy: #e0e0e0;
 
-* {
-    margin: 0 auto; /* sets initial margin to 0 */
-  }
+  --icon-gray: #383838;
+  --grey: #8697a2;
+  --light-grey: #e2e6e9;
+  --lighter-grey: #f5f5f5;
+
+  --purple: #4e46b4;
+
+  --mint: #57CBAB;
+  --light-mint: #9AE1CD;
+  --lighter-mint: #C5EDE2;
+  --lightest-mint: #E0F6F0;
+  --matte-mint: #8AC9B8;
+
+}
+
+/* [HEADBAR] Style for the headbar */
+.headbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-white);
+  border-radius: 5px; /* rounds the corners of the border */
+  height: 60px;
+  padding: 10px;
+}
+
+/* [HEADBAR] Style for the logo */
+.logo img {
+  height: 40px;
+  
+  border-radius: 7px; /* rounds the corners of the border */
+}
+
+/* [HEADBAR] Style for the navigation links */
+.headbarNav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* make the list items ordered horizontally */
+}
+
+.headbarNav li {
+  margin-right: 80px;
+}
+/* [HEADBAR] last child stays centered in link list*/
+.headbarNav li:last-child {
+  margin-right: 0;
+}
+
+ /* [HEADBAR] link styling */
+.headbarNav a {
+  text-decoration: none;
+  color: var(--icon-gray);
+  font-weight: bold;
+}
+
+/* [HEADBAR-2] Style for the navigation links */
+.headbarNav2 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* make the list items ordered horizontally */
+}
+
+.headbarNav2 li {
+  margin-right: 90px;
+}
+/* [HEADBAR-2] last child stays centered in link list*/
+.headbarNav2 li:last-child {
+  margin-right: 0;
+}
+
+ /* [HEADBAR-2] link styling */
+.headbarNav2 a {
+  text-decoration: none;
+  color: var(--icon-gray);
+  font-weight: bold;
+}
+
+/* [HEADBAR] Style for the account link */
+.headbarAcct a {
+  text-decoration: none;
+  color: var(--icon-gray);
+  font-weight: bold;
+}
+
+
+
+body{
+  background-color: var(--lightest-mint);
+
+}
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: var(--grey);
-    text-align: center;
-    font-size: 0.9em;
-    margin-bottom: 20px;
-  }
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: var(--grey);
+  text-align: center;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
