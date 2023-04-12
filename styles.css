@@ -92,6 +92,19 @@
   font-weight: bold;
 }
 
+.headbarButton {
+  background-color: var(--mint); /* Set the background color */
+  border: none; /* Remove the border */
+  color: white; /* Set the text color */
+  padding: 10px 25px; /* Set the padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove the underline */
+  display: inline-block; /* Make it an inline element */
+  font-size: 16px; /* Set the font size */
+  margin: 4px 2px; /* Add some margin */
+  cursor: pointer; /* Add a cursor on hover */
+  border-radius: 20px; /* Curves corners of buttons */
+}
 
 
 body{
