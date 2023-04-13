@@ -107,10 +107,46 @@
   border-radius: 20px; /* Curves corners of buttons */
 }
 
-/* [HEADBAR] profile icon defaul */
+/* [HEADBAR] [PROFILE] profile icon defaul */
 .profileIcon{
-  width: 50px;
+  width: 40px;
 }
+
+/* [HEADBAR] [PROFILE] Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* [HEADBAR] [PROFILE] Dropdown content (hidden by default) */
+.dropdown-content {
+  font-size: 13px;
+  white-space: nowrap;
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+/* [HEADBAR] [PROFILE]  Links inside the dropdown */
+.dropdown-content a {
+  color: var(--icon-gray);
+  display: inline-block;
+  padding: 6px 2px;
+  text-decoration: none;
+  display: block;
+}
+
+/* [HEADBAR] [PROFILE]  Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  color: var(--mint);
+}
+
+/* [HEADBAR] [PROFILE]  Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
 
 body{
   background-color: var(--lightest-mint);
