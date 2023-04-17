@@ -237,10 +237,24 @@ label {
   color: var(--icon-gray);
 }
 
-/* Input boxes */ 
+/* Input boxes */ /*
 input[type="text"],
 input[type="email"],
 input[type="password"] {
+  display: block;
+  width: 97.5%;
+  padding: 6px;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border-color: var(--lighter-grey);
+  border-width: 1px;
+  background-color: white;
+}
+*/
+.login-text,
+.login-email,
+.login-password {
   display: block;
   width: 97.5%;
   padding: 6px;
@@ -299,4 +313,19 @@ body{
   text-align: center;
   font-size: 0.9em;
   margin-bottom: 20px;
+}
+
+
+/* ---------------------------------------------------------- */
+
+/* [FORUM - Generated [4/16/23] currently broken*/
+
+/* Style your postContainer as desired */
+#postContainer {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.post {
+	margin-bottom: 10px;
 }
