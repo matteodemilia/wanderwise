@@ -320,12 +320,71 @@ body{
 
 /* [FORUM - Generated [4/16/23] currently broken*/
 
+/* [FORUM title] */
+#forum-title {
+  text-align: center;
+}
+
+#forum-button-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+/* [FORUM] Create New Post Button */
+#createPostBtn {
+  font-size: 12px;
+  text-decoration: none;
+  border: none;
+  background-color: var(--mint);
+  color: var(--icon-gray);
+  margin-bottom: 8px;
+  padding:4px;
+  border-radius: 12px;
+}
+
+#createPostBtn:hover {
+  padding:6px;
+  margin-bottom: 4px;
+  border-radius: 12px;
+}
+
+#date-posted-forum {
+  font-size: 16px;
+  color: var(--matte-mint);
+  margin-left: auto;
+}
+
 /* Style your postContainer as desired */
 #postContainer {
-	border: 1px solid black;
+	border: 1px solid var(--mint);
 	padding: 10px;
+  background-color: var(--light-white);
+  border-radius: 5px;
+}
+
+#postContainer hr {
+	border-color: var(--lighter-mint);
 }
 
 .post {
 	margin-bottom: 10px;
+  color: var(--icon-gray);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; /* this will align the elements at the baseline */
+}
+
+.post-title{
+  margin: 0;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.post-timestamp{
+  margin-left: auto;
+  color: var(--grey);
 }
