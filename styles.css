@@ -17,8 +17,11 @@
   --mint: #57CBAB;
   --light-mint: #9AE1CD;
   --lighter-mint: #C5EDE2;
+  --lighterlight-mint:#BEF6E7;
   --lightest-mint: #E0F6F0;
   --matte-mint: #8AC9B8;
+
+  --baby-blue: #6875ED;
 
 }
 
@@ -315,6 +318,45 @@ body{
   margin-bottom: 20px;
 }
 
+/* ---------------------------------------------------------- */
+
+
+/* [LANDING] */ 
+
+#landing-missions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+
+}
+
+#landing-missions img{
+  max-width: 60%;
+  width: auto;
+
+}
+
+#landing-missions ul{
+  list-style: none;
+  text-align: center;
+  margin: 7px;
+
+}
+
+#landing-banner {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lighterlight-mint);
+}
+
+#landing-banner img {
+  max-width: 30%;
+  width: auto;
+}
+
 
 /* ---------------------------------------------------------- */
 
@@ -388,3 +430,23 @@ body{
   margin-left: auto;
   color: var(--grey);
 }
+
+/* ---------------------------------------------------------- */
+
+/* [ FAQ ] */
+
+.FAQ-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.FAQ-listbox {
+  list-style: none;
+
+}
+
+
+
+/* ---------------------------------------------------------- */
