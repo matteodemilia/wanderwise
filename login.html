@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="styles.css" />
     <title>Signup</title>
+    <script type="module" src = login.js></script>
 </head>
 <body>
     <header class = "headbar">
@@ -42,31 +43,20 @@
         <!-- <img src = "wanderwiseicon.png" alt = "LOGO" class = "logo" > -->
     </header>
     
-    <div class = "login-div">
-        <form action = "#" class = "login-form"> 
-            <b>
-            <h1> Log-In</h1>
-            
-            <P></P> <!-- breakline -->
-            <p>
-                <label>Email:</label>
-                <input type="email" name="email" class="login-email">
-            </p>
+    <main>
+        
+        <div class="center-box" id="login-div"> <!-- Login Account-->
+            <h2>Login</h2>
+            <input type="email" id="login-email" class="text-field" name ="login-email" placeholder="Email"/>
+            <input type="password" id="login-password" class="text-field" name ="login-password" placeholder="Password"/>
+            <button id="login-button" class="btn-style">Login</button><br>
+        </div>
 
-            <p></p> <!-- breakline -->
-            <p>
-                <label>Password:</label>
-                <input type="password" name="password" class="login-password">
-            </p>
+        <div id="result-box">
+            <h3 id="result"></h3>
+        </div>
+      
         
-            <p></p> <!-- breakline -->
-                    <!-- submit + reset form -->
-                    <input type = "submit" value = "Submit" class = "submitButton">
-                    <input type = "reset" value = "Reset" class = "resetButton">
-        </b>
-        
-        </form>
-    </div>
-    <script src = login.js></script>
+    </main>
 </body>
 </html>

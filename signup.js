@@ -1,18 +1,57 @@
-// Get the form element and add a submit event listener
-const SUform = document.querySelector('form');
-SUform.addEventListener('submit', (event) => {
-  // Prevent the default form submission behavior
-  event.preventDefault();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
-  // Get the values of the form inputs
-  const firstname = SUform.elements.firstname.value;
-  const lastname = SUform.elements.lastname.value;
-  const email = SUform.elements.email.value;
-  const password = SUform.elements.password.value;
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
+  authDomain: "wanderwise-f21a9.firebaseapp.com",
+  databaseURL: "https://wanderwise-f21a9-default-rtdb.firebaseio.com",
+  projectId: "wanderwise-f21a9",
+  storageBucket: "wanderwise-f21a9.appspot.com",
+  messagingSenderId: "799016861840",
+  appId: "1:799016861840:web:1403232429bfe801249815"
+};
 
-  // Do something with the form data
-  console.log(`First Name: ${firstname}`);
-  console.log(`Last Name: ${firstname}`);
-  console.log(`Email: ${email}`);
-  console.log(`Password: ${password}`);
+//Initialize Database
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const database = getDatabase(app);
+
+
+//Registering
+const register = document.getElementById("register-button");
+register.addEventListener("click", function(){
+  const regEmail = document.getElementById("register-email").value;
+  const regPassword = document.getElementById("register-password").value;
+  const regFirst = document.getElementById("register-first").value;
+  const regLast = document.getElementById("register-last").value;
+
+  createUserWithEmailAndPassword(auth, regEmail, regPassword, regFirst, regLast).then((userCredential)=>{
+    const user=userCredential.user;
+    document.getElementById("result-box").style.display="inline";
+    document.getElementById("reg-div").style.display="none";
+    document.getElementById("result").innerHTML="Welcome!<br>"+regEmail+", your account has been created";
+
+    //save signup details in RT DB
+    set(ref(database, 'users/'+ user.uid),{
+      FirstName: regFirst,
+      LastName: regLast,
+      Email: regEmail
+
+    })
+
+    setTimeout(()=>{ //on success, redirect back to login page
+      window.location.replace("\login.html")
+    }, 3000)
+
+  })
+
+  .catch((error)=> {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    alert(errorMessage);
+  });
+
 });

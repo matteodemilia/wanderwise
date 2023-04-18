@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="styles.css" />
     <title>Signup</title>
+    <script type="module" src="login.js" ></script>
 </head>
 <body>
     <header class = "headbar">
@@ -42,44 +43,21 @@
         <!-- <img src = "wanderwiseicon.png" alt = "LOGO" class = "logo" > -->
     </header>
     
-    <div class = "signup-div">
-        <form action = "#" class = "signup-form"> 
-            <b>
-            <h1> Sign-Up</h1>
+    <main>
+        <div class="reg-center-box" id="reg-div"><!--Register Account-->
+            <h2>Register</h2>
+            <input type="first-name" id="register-first" class="reg-text-field" name="first-name" placeholder="First Name"/>
+            <input type="last-name" id="register-last" class="reg-text-field" name="last-name" placeholder="Last Name"/>
+            <input type="email" id="register-email" class="reg-text-field" name ="register-email" placeholder="Email"/>
+            <input type="password" id="register-password" class="reg-text-field" name ="register-password" placeholder="Password"/>
+            <button id ="register-button" class="btn-style">Register</button><br>
             
-            <P></P> <!-- breakline -->
-           
-            <p>
-                <label>First Name:</label>
-                <input type="text" name="firstname" class="login-text">
-            </p>
-            
-            <p></p> <!-- breakline -->
-            <p>
-                <label>Last Name:</label>
-                <input type="text" name="lastname" class="login-text">
-            </p>
+        </div>
 
-            <p></p> <!-- breakline -->
-            <p>
-                <label>Email:</label>
-                <input type="email" name="email" class="login-email">
-            </p>
+        <div id="result-box">
+            <h3 id="result"></h3>
+        </div>
 
-            <p></p> <!-- breakline -->
-            <p>
-                <label>Password:</label>
-                <input type="password" name="password" class="login-password">
-            </p>
-        
-            <p></p> <!-- breakline -->
-                    <!-- submit + reset form -->
-                    <input type = "submit" value = "Submit" class = "submitButton">
-                    <input type = "reset" value = "Reset" class = "resetButton">
-        </b>
-        
-        </form>
-    </div>
-    <script src="signup.js" ></script>
+    </main>
 </body>
 </html>
