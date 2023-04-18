@@ -41,5 +41,70 @@
         
         <!-- <img src = "wanderwiseicon.png" alt = "LOGO" class = "logo" > -->
     </header>
+
+    <!-- Holds both the itinerary calendar and list of itineraries -->
+    <div id ="list-and-calendar">
+
+        <!-- List container -->
+        <div class = "itinerary-list-half">
+
+            <button id = "create-itinerary-button"> New </button>
+            <h2 class = "itinerary-list-container-header"> Itineraries </h2>
+            <div class = "itinerary-list-container">
+            
+                <ul id = "itinerary-list">
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!-- Calendar container -->
+        <div>
+            
+            <div class="calendar">
+                <div class="calendar-header">
+                  <span class="prev-month-btn">&lt;</span>
+                  <span class="current-month"></span>
+                  <span class="next-month-btn">&gt;</span>
+                </div>
+                <div class="calendar-body">
+                  <div class="weekdays">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                  </div>
+                  <div class="days"></div>
+                </div>
+              </div>
+              
+              
+        </div> <!-- end of "beginning" calendar container -->
+
+    </div>
+
+    <!-- Create Itinerary Modal -->
+    <div id="add-item-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form id="add-item-form">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            <label for="startdate">Start Date:</label>
+            <input type="date" id="startdate" name="startdate" required>
+            <label for="enddate">End Date:</label>
+            <input type="date" id="enddate" name="enddate" required>
+            <p></p>
+            <button type="submit" id ="submit-itinerary">Add Itinerary</button>
+          </form>
+        </div>
+      </div>
+
+    <script src = "itinerary.js"></script>
 </body>
 </html>
