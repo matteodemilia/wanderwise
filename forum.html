@@ -54,6 +54,24 @@
     <div id = "forum-container"></div>
 	<div id="postContainer"></div>
 	
+
+    <!-- Forum Modal Pop-up -->
+
+    <!-- Create Forum Post Modal -->
+    <div id="add-item-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form class="add-item-form">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required>
+            <p></p>
+            <button type="submit" id ="submit-post">Post to Forum</button>
+          </form>
+        </div>
+      </div>
+
     <script src="forum.js"></script>
 </body>
 

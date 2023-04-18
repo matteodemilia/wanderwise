@@ -1,8 +1,8 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+//import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+//import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
-
+/*
 const firebaseConfig = {
     apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
     authDomain: "wanderwise-f21a9.firebaseapp.com",
@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-
+*/
 
 
 
@@ -89,6 +89,45 @@ const postContainer = document.getElementById("postContainer");
 
 let posts = [];
 
+const modal = document.getElementById('add-item-modal');
+const modalContent = document.querySelector('.modal-content');
+const closeButton = document.querySelector('.close');
+const submitButton = document.getElementById('submit-post');
+
+//const itineraryContainer = document.getElementById('itinerary-list');
+const createPostForm = document.querySelector('.add-item-form');
+
+
+// Opens the "create-itinerary" window when button is pressed 
+createPostBtn.addEventListener('click', () => {
+  modal.style.display = 'block';
+});
+
+// Closes the "create-itinerary" window when close button is pressed 
+closeButton.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Closes the "create-itinerary" window when user clicks outside pop-up
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+// Resizes the pop-up if resizing occurs 
+window.addEventListener('resize', () => {
+  modalContent.style.top = `${(window.innerHeight - modalContent.offsetHeight) / 2}px`;
+  modalContent.style.left = `${(window.innerWidth - modalContent.offsetWidth) / 2}px`;
+});
+
+// reloading maybe? unsure 
+window.addEventListener('load', () => {
+  modalContent.style.top = `${(window.innerHeight - modalContent.offsetHeight) / 2}px`;
+  modalContent.style.left = `${(window.innerWidth - modalContent.offsetWidth) / 2}px`;
+});
+
+/*
 createPostBtn.addEventListener("click", () => {
     const location = prompt("Enter your location (city, country):");
     const description = prompt("Enter your post description:");
@@ -103,6 +142,28 @@ createPostBtn.addEventListener("click", () => {
         post: description
       });
 
+}); */
+
+createPostForm.addEventListener("submit", (event) => {
+    // Prevent default submission event
+    event.preventDefault();
+    
+    // Extract values from the form
+    const postTitle = document.querySelector("#title").value;
+    const postDescription = document.querySelector("#description").value;
+
+    // Create item, and Push item to array
+    const post = {postTitle, postDescription, timestamp: Date.now()};
+    posts.push(post);
+
+    // clear form
+    document.querySelector("#title").value = "";
+    document.querySelector("#description").value = "";
+        
+    modal.style.display = 'none';
+
+    // Call update post list function 
+    updatePostContainer();
 });
 
 function updatePostContainer() {
@@ -122,10 +183,10 @@ function updatePostContainer() {
         const formattedDate = currentDate.toString().substring(0,15);
 
         if (i != (posts.length-1)){
-            postDiv.innerHTML = `<div class="post-header"><p class ="post-title">${post.location}</p><p class ="post-timestamp">${formattedDate}</p></div><p>${post.description}</p><hr>`;
+            postDiv.innerHTML = `<div class="post-header"><p class ="post-title">${post.postTitle}</p><p class ="post-timestamp">${formattedDate}</p></div><p>${post.postDescription}</p><hr>`;
         }
         else{
-            postDiv.innerHTML = `<div class="post-header"><p class ="post-title">${post.location}</p><p class ="post-timestamp">${formattedDate}</p></div><p>${post.description}</p>`;
+            postDiv.innerHTML = `<div class="post-header"><p class ="post-title">${post.postTitle}</p><p class ="post-timestamp">${formattedDate}</p></div><p>${post.postDescription}</p>`;
         }
         postContainer.appendChild(postDiv);
     }

@@ -5,7 +5,7 @@ const closeButton = document.querySelector('.close');
 const submitButton = document.getElementById('submit-itinerary');
 
 const itineraryContainer = document.getElementById('itinerary-list');
-const itineraryForm = document.querySelector('#add-item-form');
+const itineraryForm = document.querySelector('.add-item-form');
 
 let itineraries = [];
 

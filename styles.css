@@ -558,8 +558,11 @@ body{
 }
 
 .itinerary-list-container {
+  background-color: var(--light-white);
   border: 1px solid var(--mint);
-  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 40px;
   font-family: Arial, sans-serif;
   border-radius: 10px;
 }
@@ -604,7 +607,7 @@ body{
 }
 
 
-/* Modal pop-up for itinerary inputs */
+/* Modal pop-up for itinerary + forum inputs */
 .modal {
   display: none; 
   position: fixed; 
@@ -647,7 +650,7 @@ margin-bottom: 5px;
   border-radius: 8px;
 }
 
-#add-item-form {
+.add-item-form {
   font-size: 20px;
 }
 
