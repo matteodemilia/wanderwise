@@ -105,7 +105,6 @@
 .headbarButton {
   background-color: var(--mint); /* Set the background color */
   border: none; /* Remove the border */
-  color: white; /* Set the text color */
   padding: 10px 25px; /* Set the padding */
   text-align: center; /* Center the text */
   text-decoration: none; /* Remove the underline */
@@ -367,6 +366,12 @@ body{
   text-align: center;
 }
 
+.forum-main {
+  margin-left: 35px;
+  margin-right: 35px;
+
+}
+
 #forum-button-header {
   display: flex;
   justify-content: space-between;
@@ -375,7 +380,9 @@ body{
 
 /* [FORUM] Create New Post Button */
 #createPostBtn {
+  font-weight: bold;
   font-size: 12px;
+  cursor: pointer;
   text-decoration: none;
   border: none;
   background-color: var(--mint);
@@ -389,6 +396,7 @@ body{
   padding:6px;
   margin-bottom: 4px;
   border-radius: 12px;
+  color: var(--lighter-white);
 }
 
 #date-posted-forum {
@@ -399,7 +407,7 @@ body{
 
 /* Style your postContainer as desired */
 #postContainer {
-	border: 1px solid var(--mint);
+	border: 2px solid var(--mint);
 	padding: 10px;
   background-color: var(--light-white);
   border-radius: 5px;
@@ -430,6 +438,7 @@ body{
   margin-left: auto;
   color: var(--grey);
 }
+
 
 /* ---------------------------------------------------------- */
 
@@ -522,6 +531,10 @@ body{
 
 /* [CREATE ITINERARY MODAL] */
 
+#itinerary-title {
+  text-align: center;
+}
+
 /* Create itinerary button */ 
 #create-itinerary-button {
   margin-left: 30px;
@@ -530,12 +543,14 @@ body{
   border: none;
   background-color: var(--mint);
   color: var(--icon-gray);
+  cursor: pointer;
   padding-top:4px;
   padding-bottom:4px;
   padding-left:8px;
   padding-right:8px;
   border-radius: 8px;
   margin-bottom: 2px;
+  font-weight: bold;
 
 }
 
@@ -553,6 +568,7 @@ body{
 
 /* Itinerary list */ 
 .itinerary-list-half {
+  margin-bottom: auto;
   margin-right: 140px;
   margin-left: 30px;
 }
@@ -670,3 +686,10 @@ margin-bottom: 5px;
 
 
 /* ---------------------------------------------------------- */
+
+
+/* [BROWSE] */
+
+#browse-title{
+  text-align: center;
+}

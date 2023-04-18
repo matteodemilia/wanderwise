@@ -44,16 +44,17 @@
     </header>
 
 
-    <!-- Forum Post Container. Generated [4/16/2023] currently broken -->
+    <!-- Forum Post Container. Generated -->
    
-    <h1 id = "forum-title">Forum</h1>
-    <div id = "forum-button-header">
-	    <button id="createPostBtn">Create Forum Post</button>
-        <p id = "date-posted-forum">Date posted</p>
-    </div>
-    <div id = "forum-container"></div>
-	<div id="postContainer"></div>
-	
+    <h1 id = "forum-title">Public Forum</h1>
+    <div class = "forum-main">
+        <div id = "forum-button-header">
+	        <button id="createPostBtn">Create Forum Post</button>
+            <p id = "date-posted-forum">Date posted</p>
+        </div>
+        <div id = "forum-container"></div>
+	    <div id="postContainer"></div>
+	</div>
 
     <!-- Forum Modal Pop-up -->
 
@@ -65,12 +66,17 @@
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
             <label for="description">Description:</label>
-            <input type="text" id="description" name="description" required>
+            <input type="textarea" id="description" name="description" required>
             <p></p>
             <button type="submit" id ="submit-post">Post to Forum</button>
           </form>
         </div>
-      </div>
+    </div>
+
+    <!-- Footer of Main Dashboard -->
+    <footer class="footer">
+        <p> 2023 Wanderwise group via CS-370 CSUSM </p>
+    </footer>
 
     <script src="forum.js"></script>
 </body>
