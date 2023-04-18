@@ -1,3 +1,26 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
+    authDomain: "wanderwise-f21a9.firebaseapp.com",
+    databaseURL: "https://wanderwise-f21a9-default-rtdb.firebaseio.com",
+    projectId: "wanderwise-f21a9",
+    storageBucket: "wanderwise-f21a9.appspot.com",
+    messagingSenderId: "799016861840",
+    appId: "1:799016861840:web:e3ca8c68d58950bf249815"
+  };
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+
+
+
+
+
 /*const createPostButton = document.getElementById("createPostBtn");
 const postContainer = document.getElementById("postContainer");
 
@@ -72,6 +95,14 @@ createPostBtn.addEventListener("click", () => {
     const post = { location, description, timestamp: Date.now() };
     posts.push(post);
     updatePostContainer();
+
+    
+
+    set(ref(database, 'forum/'), {
+        location: location,
+        post: description
+      });
+
 });
 
 function updatePostContainer() {
@@ -99,4 +130,3 @@ function updatePostContainer() {
         postContainer.appendChild(postDiv);
     }
 }
-
