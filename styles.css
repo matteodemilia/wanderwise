@@ -343,12 +343,26 @@ body{
 
 }
 
+.mission-label {
+  font-family: sans-serif;
+  color: var(--grey);
+}
+
+.landing-seperator {
+  border-color: var(--icon-gray);
+  margin-left: 55px;
+  margin-right: 55px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 #landing-banner {
   margin-top: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--lighterlight-mint);
+  background-color: var(--icon-gray);
+  border-radius: 15px;
 }
 
 #landing-banner img {
