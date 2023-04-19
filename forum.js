@@ -1,8 +1,9 @@
-//import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-//import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
-/*
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
     authDomain: "wanderwise-f21a9.firebaseapp.com",
@@ -13,11 +14,40 @@ const firebaseConfig = {
     appId: "1:799016861840:web:e3ca8c68d58950bf249815"
   };
 
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+  //firebase.initializeApp(firebaseConfig);
+
+
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+  
+/*
+  const starCountRef = ref(database, 'forum');
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    updateStarCount(postElement, data);
+  });
+  
+   
+    });
+/*working
+var firebaseRef = ref(database, "forum");
+onValue(firebaseRef , (snapshot)=>{
+    //const data = snapshot.val();
+    snapshot.forEach(function(element){
+      document.querySelector('#previous-post').innerHTML +=
+        `<div>${element.val()}</div>`
+        
+    });
 */
-
-
+var firebaseRef = ref(database, "forum");
+onValue(firebaseRef , (snapshot)=>{
+    //const data = snapshot.val();
+    snapshot.forEach(function(element){
+      document.querySelector('#previous-post').innerHTML +=
+        `<div>${element.val()}</div>`
+        
+    });
+})
 
 
 
@@ -86,6 +116,7 @@ function updatePostContainer() {
 
 const createPostBtn = document.getElementById("createPostBtn");
 const postContainer = document.getElementById("postContainer");
+const prevContainer = document.getElementById("previous-post");
 
 let posts = [];
 
@@ -152,6 +183,11 @@ createPostForm.addEventListener("submit", (event) => {
     const postTitle = document.querySelector("#title").value;
     const postDescription = document.querySelector("#description").value;
 
+    set(ref(database, 'forum/'), {
+      Title: postTitle,
+      post: postDescription
+    });
+
     // Create item, and Push item to array
     const post = {postTitle, postDescription, timestamp: Date.now()};
     posts.push(post);
@@ -191,3 +227,4 @@ function updatePostContainer() {
         postContainer.appendChild(postDiv);
     }
 }
+
