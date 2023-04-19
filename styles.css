@@ -527,6 +527,13 @@ body{
   border-radius: 5px;
 }
 
+.previousPost {
+	border: 2px solid var(--mint);
+	padding: 10px;
+  background-color: var(--light-white);
+  border-radius: 5px;
+}
+
 #postContainer hr {
 	border-color: var(--lighter-mint);
 }
