@@ -224,35 +224,40 @@ createPostForm.addEventListener("submit", (event) => {
 });
 
 
-function updatePostContainer() {
-    // Clear the current contents of the postContainer
-    postContainer.innerHTML = "";
+// Function to update the calendar
+function updateCalendar() {
+    // Display the current month and year
+    currentMonthYear.innerHTML = currentDate.toLocaleString('default', { month: 'long' }) + ' ' + currentDate.getFullYear();
 
-    // Sort the posts array by timestamp in descending order
-    posts.sort((a, b) => b.timestamp - a.timestamp);
+    // Set the calendar days
+    let days = '';
 
-    // Create a new div for each post and append it to the postContainer
-    for (let i = 0; i < posts.length; i++) {
-        const post = posts[i];
-        const postDiv = document.createElement("div");
-        postDiv.classList.add("post");
-        
-        const currentDate = Date(post.timestamp);
-        const formattedDate = currentDate.toString().substring(0,15);
+    // Get the number of days in the current month
+    const numOfDays = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
 
-        if (i != (posts.length-1)){
-            postDiv.innerHTML = `<div class="post-header"><p class ="post-title">${post.postTitle}</p><p class ="post-timestamp">${formattedDate}</p></div><p>${post.postDescription}</p><hr>`;
-        }
-        else{
-            postDiv.innerHTML = `<div class="post-header"><p class ="post-title">${post.postTitle}</p><p class ="post-timestamp">${formattedDate}</p></div><p>${post.postDescription}</p>`;
-        }
-        postContainer.appendChild(postDiv);
-        
+    // Get the day of the week of the first day of the current month
+    const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+
+    // Add empty cells for days before the first day of the month
+    for (let i = 0; i < firstDayOfMonth; i++) {
+        days += '<span></span>';
     }
-<<<<<<< HEAD
-}
-=======
-}
 
+    // Add the days of the month
+    for (let i = 1; i <= numOfDays; i++) {
+        // Add the "today" class to the current day
+        if (i === currentDate.getDate() && currentDate.getMonth() === new Date().getMonth() && currentDate.getFullYear() === new Date().getFullYear()) {
+            days += '<span class="today">' + i + '</span>';
+        } else {
+            days += '<span>' + i + '</span>';
+        }
+    }
 
->>>>>>> 897000cf6c08e7f480415a8681a5cc3b19f54ffb
+    // Add empty cells for days after the last day of the month
+    for (let i = firstDayOfMonth + numOfDays; i < 42; i++) {
+        days += '<span></span>';
+    }
+
+    // Add the days
+    daysElement.innerHTML = days;
+}
