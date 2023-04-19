@@ -28,6 +28,7 @@
 
 /* ---------------------------------------------------------- */
 
+* { font-family: sans-serif; }
 
 /* [HEADBAR] Style for the headbar */
 .headbar {
@@ -489,6 +490,14 @@ body{
   border-radius: 12px;
 }
 
+.landing-mission-button a{
+  text-decoration: none;
+  color: var(--icon-gray);
+}
+
+.landing-mission-button a:hover{
+  color: var(--light-white);
+}
 /* ---------------------------------------------------------- */
 
 /* [FORUM - Generated [4/16/23] currently broken*/
@@ -587,12 +596,24 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 
 }
 
 .FAQ-listbox {
   list-style: none;
+  background-color: var(--light-white);
+}
 
+.FAQ-listbox li{
+  color: var(--mint);
+  font-size: 30px;
+}
+
+.answer {
+  color: var(--icon-gray);
+  font-size: 18px;
+  margin-left: 24px;
 }
 
 
@@ -832,3 +853,8 @@ margin-bottom: 5px;
 #browse-title{
   text-align: center;
 }
+
+
+/* ---------------------------------------------------------- */
+
+

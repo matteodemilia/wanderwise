@@ -249,4 +249,10 @@ function updatePostContainer() {
         postContainer.appendChild(postDiv);
         
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+
+>>>>>>> 897000cf6c08e7f480415a8681a5cc3b19f54ffb
