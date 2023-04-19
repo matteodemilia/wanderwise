@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="styles.css" />
     <title>Itinerary</title>
+    
 </head>
 <body>
     <!-- Header of Itinerary Page -->
@@ -32,8 +33,8 @@
             <div class="dropdown">
                 <a href="#"><img src="profile-icon.png" alt="profile" class="profileIcon"></a>
                 <div class="dropdown-content">
-                    <a href="login.html">Login</a>
-                    <a href="signup.html">Sign-up</a>
+                    <a id="login-drop" href="login.html">Login</a>
+                    <a id="signup-drop" href="signup.html">Sign-up</a>
                     <a href="faq.html">  FAQ  </a>
                 </div>
             </div>
@@ -112,7 +113,8 @@
     <footer class="footer">
         <p> 2023 Wanderwise group via CS-370 CSUSM </p>
     </footer>
-
     <script src = "itinerary.js"></script>
+    <script type="module" src = login.js></script>
+    <script src="dropdown.js"></script>
 </body>
 </html>
