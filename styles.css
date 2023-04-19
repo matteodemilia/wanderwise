@@ -444,16 +444,32 @@ body{
   width: auto;
 }
 
-.big-missions {
+.big-missions,
+.big-missions2 {
+  margin-top: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
-
+/*
 .big-missions img{
   max-width: 80%;
   width: auto;
 }
 
+.big-missions2 img{
+  max-width: 80%;
+  width: auto;
+}
+*/
+.big-picture img{
+  max-width: 80%;
+  width: auto;
+}
+
+.big-picture {
+  display: flex;
+  justify-content: center;
+}
 
 /* ---------------------------------------------------------- */
 
