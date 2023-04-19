@@ -381,7 +381,7 @@ body{
 }
 
 .footer {
-  position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -389,6 +389,7 @@ body{
   text-align: center;
   font-size: 0.9em;
   margin-bottom: 20px;
+  margin-top: 50px;
 }
 
 /* ---------------------------------------------------------- */
@@ -437,6 +438,8 @@ body{
   align-items: center;
   background-color: var(--icon-gray);
   border-radius: 15px;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 #landing-banner img {
@@ -446,21 +449,12 @@ body{
 
 .big-missions,
 .big-missions2 {
+  align-items: center;
   margin-top: 30px;
   display: flex;
   justify-content: center;
 }
-/*
-.big-missions img{
-  max-width: 80%;
-  width: auto;
-}
 
-.big-missions2 img{
-  max-width: 80%;
-  width: auto;
-}
-*/
 .big-picture img{
   max-width: 80%;
   width: auto;
@@ -469,6 +463,30 @@ body{
 .big-picture {
   display: flex;
   justify-content: center;
+}
+
+.big-text {
+  text-align: center;
+  color: var(--mint);
+  max-width: 40% ;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-right: 30px;
+  margin-left: 30px;
+  font-size: 45px;
+}
+
+.landing-mission-button {
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background-color: var(--mint);
+  color: var(--icon-gray);
+  margin-bottom: 8px;
+  padding:4px;
+  border-radius: 12px;
 }
 
 /* ---------------------------------------------------------- */
