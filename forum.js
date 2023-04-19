@@ -1,5 +1,5 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, set, onValue, get } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
 
@@ -20,6 +20,7 @@ const firebaseConfig = {
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
   
+  
 /*
   const starCountRef = ref(database, 'forum');
   onValue(starCountRef, (snapshot) => {
@@ -39,15 +40,41 @@ onValue(firebaseRef , (snapshot)=>{
         
     });
 */
+
+/*
 var firebaseRef = ref(database, "forum");
 onValue(firebaseRef , (snapshot)=>{
     //const data = snapshot.val();
     snapshot.forEach(function(element){
-      document.querySelector('#previous-post').innerHTML +=
-        `<div>${element.val()}</div>`
+      document.querySelector('#postContainer').innerHTML +=
+        `<h3>
+        <div></div>
+        ${element.val()}</h3>`
         
     });
 })
+*/
+var firebaseRef = ref(database, "forum");
+onValue(firebaseRef , (snapshot)=>{
+    snapshot.forEach(function(childSnapshot){
+        const key = childSnapshot.key; // get the key of the child element
+        const value = childSnapshot.val(); // get the value of the child element
+        
+        // do something with the key and value
+        console.log(key, value);
+        
+        // example of using the key and value to update the DOM
+        const postDiv = document.createElement('div');
+        const postTitle = document.createElement('h4');
+        const postContent = document.createElement('div');
+        postTitle.innerText = key;
+        postContent.innerText = value;
+        postDiv.appendChild(postTitle);
+        postDiv.appendChild(postContent);
+        document.querySelector('#postContainer').appendChild(postDiv);
+    });
+});
+
 
 
 
@@ -116,7 +143,7 @@ function updatePostContainer() {
 
 const createPostBtn = document.getElementById("createPostBtn");
 const postContainer = document.getElementById("postContainer");
-const prevContainer = document.getElementById("previous-post");
+//const prevContainer = document.getElementById("previous-post");
 
 let posts = [];
 
@@ -175,6 +202,7 @@ createPostBtn.addEventListener("click", () => {
 
 }); */
 
+//post to forum
 createPostForm.addEventListener("submit", (event) => {
     // Prevent default submission event
     event.preventDefault();
@@ -183,14 +211,20 @@ createPostForm.addEventListener("submit", (event) => {
     const postTitle = document.querySelector("#title").value;
     const postDescription = document.querySelector("#description").value;
 
-    set(ref(database, 'forum/'), {
-      Title: postTitle,
-      post: postDescription
-    });
+    
+
+  
 
     // Create item, and Push item to array
     const post = {postTitle, postDescription, timestamp: Date.now()};
     posts.push(post);
+
+    set(ref(database, 'forum/'), {
+      Date: Date(post.timestamp),
+      Title: postTitle,
+      Description: postDescription,
+    
+    });
 
     // clear form
     document.querySelector("#title").value = "";
@@ -201,6 +235,7 @@ createPostForm.addEventListener("submit", (event) => {
     // Call update post list function 
     updatePostContainer();
 });
+
 
 function updatePostContainer() {
     // Clear the current contents of the postContainer
@@ -225,6 +260,8 @@ function updatePostContainer() {
             postDiv.innerHTML = `<div class="post-header"><p class ="post-title">${post.postTitle}</p><p class ="post-timestamp">${formattedDate}</p></div><p>${post.postDescription}</p>`;
         }
         postContainer.appendChild(postDiv);
+        
     }
 }
+
 
