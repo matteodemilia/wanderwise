@@ -221,10 +221,9 @@ createPostForm.addEventListener("submit", (event) => {
     modal.style.display = 'none';
 
     // Call update post list function 
-    updatePostContainer();
-});
+  });
 
-
+/*
 // Function to update the calendar
 function updateCalendar() {
     // Display the current month and year
@@ -261,4 +260,4 @@ function updateCalendar() {
 
     // Add the days
     daysElement.innerHTML = days;
-}
+} */
