@@ -25,12 +25,12 @@ onAuthStateChanged(auth,(user)=>{
     if(user){
         const userId = user.uid;
         const userRef = child(ref(database), 'users/' + userId);
-    
+        //displays user's first name on their profile
         get(userRef).then((snapshot) => {
             if(snapshot.exists()){
                 const userData = snapshot.val();
-                const firstName = userData.firstName;
-                console.log(user);
+                const firstName = userData.FirstName;
+                document.getElementById("username").textContent = firstName + "'s Profile";
             }
             else{
                 console.log("No data available");
@@ -42,6 +42,7 @@ onAuthStateChanged(auth,(user)=>{
     }
     
 });
+
 
 
 
