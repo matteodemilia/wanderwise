@@ -1,5 +1,6 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+import { getDatabase, ref, set, orderByChild, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
 
@@ -18,8 +19,69 @@ const firebaseConfig = {
 
 
   const app = initializeApp(firebaseConfig);
+  const auth= getAuth();
   const database = getDatabase(app);
   
+  /*
+  var firebaseRef = ref(database, 'forum/userId');
+
+  onValue(firebaseRef , (snapshot)=>{
+      snapshot.forEach(function(childSnapshot){
+          const key = childSnapshot.key; // get the key of the child element
+          const value = childSnapshot.val(); // get the value of the child element
+          
+          // do something with the key and value
+          console.log(key, value);
+          
+          // example of using the key and value to update the DOM
+          const postDiv = document.createElement('div');
+          const postTitle = document.createElement('h4');
+          const postContent = document.createElement('div');
+          postTitle.innerText = key;
+          postContent.innerText = value;
+          postDiv.appendChild(postTitle);
+          postDiv.appendChild(postContent);
+          document.querySelector('#postContainer').appendChild(postDiv);
+      });
+  });
+  */
+
+  // Reference to the "forum" database
+const forumRef = ref(database, "forum")
+
+// Listen for changes to the "forum" database
+onValue(forumRef, (snapshot) => {
+  // Get all posts from the snapshot
+  const posts = snapshot.val();
+
+  // Clear the existing post container
+  const postContainer = document.querySelector("#postContainer");
+  postContainer.innerHTML = "";
+
+  // Loop through each post and add it to the post container
+  for (const postId in posts) {
+    if (Object.hasOwnProperty.call(posts, postId)) {
+      const post = posts[postId];
+      
+      // Create a post element
+      const postElement = document.createElement("div");
+      postElement.className = "post";
+
+      // Add title and description to the post element
+      const titleElement = document.createElement("h3");
+      titleElement.textContent = post.Title;
+      const descriptionElement = document.createElement("p");
+      descriptionElement.textContent = post.Description;
+      postElement.appendChild(titleElement);
+      postElement.appendChild(descriptionElement);
+
+      // Add the post element to the post container
+      postContainer.appendChild(postElement);
+    }
+  }
+});
+
+   
   
 /*
   const starCountRef = ref(database, 'forum');
@@ -55,7 +117,8 @@ onValue(firebaseRef , (snapshot)=>{
 })
 */
 
-var firebaseRef = ref(database, "forum");
+/*
+var firebaseRef = ref(database, 'forum/userid');
 onValue(firebaseRef , (snapshot)=>{
     snapshot.forEach(function(childSnapshot){
         const key = childSnapshot.key; // get the key of the child element
@@ -75,6 +138,7 @@ onValue(firebaseRef , (snapshot)=>{
         document.querySelector('#postContainer').appendChild(postDiv);
     });
 });
+*/
 
 
 
@@ -191,37 +255,44 @@ createPostBtn.addEventListener("click", () => {
 }); */
 
 //post to forum
+//post to forum
 createPostForm.addEventListener("submit", (event) => {
-    // Prevent default submission event
-    event.preventDefault();
-    
-    // Extract values from the form
-    const postTitle = document.querySelector("#title").value;
-    const postDescription = document.querySelector("#description").value;
+  // Prevent default submission event
+  event.preventDefault();
 
-    
+  // Check if user is signed in
+  auth.onAuthStateChanged((user) => {
+      if (!user) {
+          console.log("User not signed in");
+          return;
+      }
 
-  
+      const userId = user.uid;
 
-    // Create item, and Push item to array
-    const post = {postTitle, postDescription, timestamp: Date.now()};
-    posts.push(post);
+      // Extract values from the form
+      const postTitle = document.querySelector("#title").value;
+      const postDescription = document.querySelector("#description").value;
 
-    set(ref(database, 'forum/'), {
-      Date: Date(post.timestamp),
-      Title: postTitle,
-      Description: postDescription,
-    
-    });
+      // Create item, and Push item to array
+      const post = {postTitle, postDescription, timestamp: Date.now()};
+      posts.push(post);
 
-    // clear form
-    document.querySelector("#title").value = "";
-    document.querySelector("#description").value = "";
-        
-    modal.style.display = 'none';
+      set(ref(database, 'forum/' + userId), {
+          Date: Date(post.timestamp),
+          Title: postTitle,
+          Description: postDescription
+      });
 
-    // Call update post list function 
+      // clear form
+      document.querySelector("#title").value = "";
+      document.querySelector("#description").value = "";
+
+      modal.style.display = 'none';
+
+      // Call update post list function 
   });
+});
+
 
 /*
 // Function to update the calendar
