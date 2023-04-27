@@ -1,6 +1,6 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
-import { getDatabase, ref, set, orderByChild, child, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, set, orderByChild, child, onValue, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
 
@@ -68,7 +68,7 @@ onValue(forumRef, (snapshot) => {
       postElement.className = "post";
 
       // Add title and description to the post element
-      const titleElement = document.createElement("h3");
+      const titleElement = document.createElement("h2");
       titleElement.textContent = post.Title;
       const descriptionElement = document.createElement("p");
       descriptionElement.textContent = post.Description;
@@ -77,6 +77,7 @@ onValue(forumRef, (snapshot) => {
 
       // Add the post element to the post container
       postContainer.appendChild(postElement);
+      postContainer.appendChild(document.createElement("hr"));
     }
   }
 });
@@ -259,7 +260,7 @@ createPostBtn.addEventListener("click", () => {
 createPostForm.addEventListener("submit", (event) => {
   // Prevent default submission event
   event.preventDefault();
-
+ 
   // Check if user is signed in
   auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -268,17 +269,22 @@ createPostForm.addEventListener("submit", (event) => {
       }
 
       const userId = user.uid;
-
+      const now = new Date();
       // Extract values from the form
       const postTitle = document.querySelector("#title").value;
       const postDescription = document.querySelector("#description").value;
-
+      const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.toLocaleTimeString()}`;
       // Create item, and Push item to array
-      const post = {postTitle, postDescription, timestamp: Date.now()};
+      const post = {postTitle, postDescription, timestamp: formattedDate};
       posts.push(post);
 
-      set(ref(database, 'forum/' + userId), {
-          Date: Date(post.timestamp),
+      //const now = new Date();
+      //const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.toLocaleTimeString()}`;
+      //const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.toLocaleTimeString()}`;
+
+
+      update(ref(database, 'forum/' + userId), {
+          Date: formattedDate,
           Title: postTitle,
           Description: postDescription
       });
