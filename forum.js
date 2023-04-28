@@ -69,7 +69,7 @@ const firebaseConfig = {
     }
   
     // Sort the posts by timestamp in descending order
-    allPosts.sort((a, b) => (new Date(b.timestamp) - new Date(a.timestamp)));
+    allPosts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   
     // Clear the existing post container
     const postContainer = document.querySelector("#postContainer");
@@ -81,11 +81,18 @@ const firebaseConfig = {
       const postElement = document.createElement("div");
       postElement.className = "post";
   
-      // Add title and description to the post element
+      // Add date, title, and description to the post element
+      const dateElement = document.createElement("span");
+      dateElement.id = "date-posted-forum";
+      dateElement.textContent = new Date(post.timestamp).toLocaleString();
       const titleElement = document.createElement("h2");
+      titleElement.style.marginLeft = "10px";
       titleElement.textContent = post.postTitle;
       const descriptionElement = document.createElement("p");
+      descriptionElement.style.marginLeft = "10px";
       descriptionElement.textContent = post.postDescription;
+      dateElement.style.float = "right";
+      postElement.appendChild(dateElement);
       postElement.appendChild(titleElement);
       postElement.appendChild(descriptionElement);
   
@@ -94,6 +101,11 @@ const firebaseConfig = {
       postContainer.appendChild(document.createElement("hr"));
     }
   });
+  
+  
+
+  
+  
   
 
   
