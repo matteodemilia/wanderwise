@@ -1,6 +1,6 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
-import { getDatabase, ref, set, orderByChild, child, onValue, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+import { getDatabase, ref, push, set, orderByChild, child, onValue, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
 
 
@@ -47,40 +47,56 @@ const firebaseConfig = {
   */
 
   // Reference to the "forum" database
-const forumRef = ref(database, "forum")
+  const forumRef = ref(database, "forum");
 
-// Listen for changes to the "forum" database
-onValue(forumRef, (snapshot) => {
-  // Get all posts from the snapshot
-  const posts = snapshot.val();
-
-  // Clear the existing post container
-  const postContainer = document.querySelector("#postContainer");
-  postContainer.innerHTML = "";
-
-  // Loop through each post and add it to the post container
-  for (const postId in posts) {
-    if (Object.hasOwnProperty.call(posts, postId)) {
-      const post = posts[postId];
-      
+  // Listen for changes to the "forum" database
+  onValue(forumRef, (snapshot) => {
+    // Get all posts from the snapshot
+    const posts = snapshot.val();
+  
+    // Combine all posts into a single array
+    const allPosts = [];
+    for (const userId in posts) {
+      if (Object.hasOwnProperty.call(posts, userId)) {
+        const userPosts = posts[userId];
+        for (const postId in userPosts) {
+          if (Object.hasOwnProperty.call(userPosts, postId)) {
+            const post = userPosts[postId];
+            allPosts.push(post);
+          }
+        }
+      }
+    }
+  
+    // Sort the posts by timestamp in descending order
+    allPosts.sort((a, b) => (new Date(b.timestamp) - new Date(a.timestamp)));
+  
+    // Clear the existing post container
+    const postContainer = document.querySelector("#postContainer");
+    postContainer.innerHTML = "";
+  
+    // Loop through each post and add it to the post container
+    for (const post of allPosts) {
       // Create a post element
       const postElement = document.createElement("div");
       postElement.className = "post";
-
+  
       // Add title and description to the post element
       const titleElement = document.createElement("h2");
-      titleElement.textContent = post.Title;
+      titleElement.textContent = post.postTitle;
       const descriptionElement = document.createElement("p");
-      descriptionElement.textContent = post.Description;
+      descriptionElement.textContent = post.postDescription;
       postElement.appendChild(titleElement);
       postElement.appendChild(descriptionElement);
-
+  
       // Add the post element to the post container
       postContainer.appendChild(postElement);
       postContainer.appendChild(document.createElement("hr"));
     }
-  }
-});
+  });
+  
+
+  
 
    
   
@@ -274,20 +290,21 @@ createPostForm.addEventListener("submit", (event) => {
       const postTitle = document.querySelector("#title").value;
       const postDescription = document.querySelector("#description").value;
       const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.toLocaleTimeString()}`;
-      // Create item, and Push item to array
-      const post = {postTitle, postDescription, timestamp: formattedDate};
+      
+      // Generate a new unique ID for the post
+      const newPostKey = push(ref(database, `forum/${userId}`)).key;
+      
+      const post = {newPostKey,postTitle, postDescription, timestamp: formattedDate};
       posts.push(post);
 
-      //const now = new Date();
-      //const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.toLocaleTimeString()}`;
-      //const formattedDate = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${now.toLocaleTimeString()}`;
+      // Create item and push it to the database
+      const postData = {
+        postTitle: postTitle,
+        postDescription: postDescription,
+        timestamp: formattedDate
+      };
 
-
-      update(ref(database, 'forum/' + userId), {
-          Date: formattedDate,
-          Title: postTitle,
-          Description: postDescription
-      });
+      update(ref(database, `forum/${userId}/${newPostKey}`), postData);
 
       // clear form
       document.querySelector("#title").value = "";
