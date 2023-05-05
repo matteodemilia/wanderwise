@@ -75,7 +75,7 @@ onAuthStateChanged(auth, (user) => {
 function formatDate(dateStr) {
   const date = new Date(dateStr);
   const month = date.getMonth() + 1;
-  const day = date.getDate();
+  const day = date.getDate()+1;
   return `${month < 10 ? "0" : ""}${month}-${day < 10 ? "0" : ""}${day}`;
 }
 
