@@ -1,3 +1,132 @@
+import { initializeApp} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+import { getDatabase, ref, push, set, orderByChild, child, onValue, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
+    authDomain: "wanderwise-f21a9.firebaseapp.com",
+    databaseURL: "https://wanderwise-f21a9-default-rtdb.firebaseio.com",
+    projectId: "wanderwise-f21a9",
+    storageBucket: "wanderwise-f21a9.appspot.com",
+    messagingSenderId: "799016861840",
+    appId: "1:799016861840:web:e3ca8c68d58950bf249815"
+  };
+
+
+const app = initializeApp(firebaseConfig);
+const auth= getAuth();
+const database = getDatabase(app);
+
+
+
+const itineraryRef = ref(database, "itinerary");
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const userId = user.uid;
+    const userItineraryRef = child(itineraryRef, userId);
+    // Listen for changes to the user's "itinerary" database
+    onValue(userItineraryRef, (snapshot) => {
+      // Get all itinerary items from the snapshot
+      const itineraryItems = snapshot.val();
+
+      // Sort itinerary items by start date
+      const sortedItineraryItems = Object.values(itineraryItems).sort((a, b) => {
+        return new Date(a.Startdate) - new Date(b.Startdate);
+      });
+
+      // Clear the existing itinerary list container
+      const itineraryListContainer = document.querySelector(".itinerary-list-container");
+      itineraryListContainer.innerHTML = "";
+
+      // Loop through each itinerary item and add it to the itinerary list container
+      for (const itineraryItem of sortedItineraryItems) {
+        // Create an itinerary item element
+        const itineraryItemElement = document.createElement("div");
+        itineraryItemElement.className = "itinerary";
+
+        // Add the itinerary item details to the element
+        const titleElement = document.createElement("h2");
+        titleElement.id = "itinerary-title";
+        titleElement.style.marginLeft = "10px"
+        titleElement.textContent = itineraryItem.Title;
+        const startdateElement = document.createElement("span");
+        startdateElement.id = "itinerary-list-dates";
+        startdateElement.style.marginLeft = "10px"
+        startdateElement.textContent = formatDate(itineraryItem.Startdate);
+        const enddateElement = document.createElement("span");
+        enddateElement.id = "itinerary-list-dates";
+        enddateElement.textContent = " to " + formatDate(itineraryItem.Enddate); // Add "to" between start and end date
+        itineraryItemElement.appendChild(titleElement);
+        itineraryItemElement.appendChild(startdateElement);
+        itineraryItemElement.appendChild(enddateElement);
+
+        // Add the itinerary item element to the itinerary list container
+        itineraryListContainer.appendChild(itineraryItemElement);
+        itineraryListContainer.appendChild(document.createElement("hr"));
+      }
+    });
+  }
+});
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${month < 10 ? "0" : ""}${month}-${day < 10 ? "0" : ""}${day}`;
+}
+
+
+
+
+
+
+/*
+const forumRef = ref(database, "itinerary");
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const userId = user.uid;
+    const userForumRef = child(forumRef, userId);
+  // Listen for changes to the "forum" database
+    onValue(userForumRef, (snapshot) => {
+  // Get all posts from the snapshot
+    const userPosts = snapshot.val();
+
+    const allPosts = Object.values(userPosts);
+
+    // Clear the existing post container
+    const postContainer = document.querySelector(".itinerary-list-container");
+    postContainer.innerHTML = "";
+
+      for (const post of allPosts) {
+        const postElement = document.createElement("div");
+          postElement.className = "itinerary";
+        
+        const startdateElement = document.createElement("span");
+        startdateElement.id = "itinerary-title";
+        const enddateElement = document.createElement("span");
+        enddateElement.id = "itinerary-list-dates";
+        const titleElement = document.createElement("h2");
+        titleElement.id = "itinerary-title";
+        postElement.appendChild(titleElement);
+        postElement.appendChild(startdateElement);
+        postElement.appendChild(enddateElement);
+
+        postContainer.appendChild(postElement);
+        postContainer.appendChild(document.createElement("hr"));
+
+      }  
+    });
+  }
+});
+    
+*/
+
+
 const createItineraryButton = document.getElementById('create-itinerary-button');
 const modal = document.getElementById('add-item-modal');
 const modalContent = document.querySelector('.modal-content');
@@ -42,6 +171,14 @@ itineraryForm.addEventListener('submit', (event) => {
     // Prevent default submission event
     event.preventDefault();
 
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+          console.log("User not signed in");
+          return;
+      }
+
+      const userId = user.uid;
+
     // Grab submitted values of the modal 
     const itineraryTitle = document.querySelector("#title").value;
     const itineraryStartDate = document.querySelector("#startdate").value;
@@ -49,9 +186,21 @@ itineraryForm.addEventListener('submit', (event) => {
 
     //console.log(itineraryTitle, itineraryStartDate, itineraryEndDate)
     
+    const newPostKey = push(ref(database, `itinerary/${userId}`)).key;
+
+
     const itinerary = { itineraryTitle, itineraryStartDate, itineraryEndDate };
     itineraries.push(itinerary);
     
+   
+    const postData = {
+      Title: itineraryTitle,
+      Startdate: itineraryStartDate,
+      Enddate: itineraryEndDate
+    };
+
+    update(ref(database, `itinerary/${userId}/${newPostKey}`), postData);
+   
     //console.log(itinerary.itineraryTitle, itinerary.itineraryStartDate, itinerary.itineraryEndDate);
     
 
@@ -61,6 +210,7 @@ itineraryForm.addEventListener('submit', (event) => {
     document.querySelector("#enddate").value = "";
     modal.style.display = 'none';
     updateItineraryContainer();
+  });
 });
 
 
