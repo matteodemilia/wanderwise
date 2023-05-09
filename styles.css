@@ -616,6 +616,17 @@ body{
   margin-left: 24px;
 }
 
+.answer-image-container{
+  display: flex;
+}
+
+.answer-image{
+  max-width: 25%;
+  margin-bottom: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
 
 
 /* ---------------------------------------------------------- */
@@ -858,3 +869,72 @@ margin-bottom: 5px;
 /* ---------------------------------------------------------- */
 
 
+/*  [PROFILE]  */ 
+
+#profile-page-main{
+  display: flex;
+  justify-content: center;
+
+}
+
+#profile-left-column{
+  margin-right: auto;
+}
+
+#profile-mid-column{
+  margin-left: auto;
+}
+
+#profile-right-column{
+  margin-left: 10%;
+  margin-right: 15%;
+}
+
+#username{
+  font-family: sans-serif;
+  color: var(--icon-gray);
+
+}
+
+#profile-first-name{
+  font-family: sans-serif;
+  color: var(--icon-gray);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#profile-last-name{
+  font-family: sans-serif;
+  color: var(--icon-gray);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#profile-email{
+  font-family: sans-serif;
+  color: var(--icon-gray);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+#profile-first-name-box{
+  font-family: sans-serif;
+  color: var(--mint);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#profile-last-name-box{
+  font-family: sans-serif;
+  color: var(--mint);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#profile-email-box{
+  font-family: sans-serif;
+  color: var(--mint);
+  font-weight: bold;
+  font-size: 18px;
+}

@@ -54,12 +54,42 @@
 
         <!-- Outer div: has control over profile info, itinerary info, and active forum posts -->
         <div id="profile-page-main">
-            <p class = "profile-name"> First Name: <span id = "profile-first-name-box"></span></p> <br>
-            <p class = "profile-name"> Last Name: <span id = "profile-last-name-box"></span></p> <br>
-            <p class = "profile-email"> Email: <span id = "profile-email-box"></span></p> <br>
-            <p class = "profile-bio"> Bio: <span id = "profile-bio-box"></span></p> <br>
-            <button id = "profile-edit-button">Edit Profile</button>
-            <button id = "profile-save-button">Save</button>
+
+            <!-- Left-Most Column: User's [personal info] -->
+            <div id = "profile-left-column">
+                <p id = "profile-first-name"> First Name: <span id = "profile-first-name-box"></span></p> <br>
+                <p id = "profile-last-name"> Last Name: <span id = "profile-last-name-box"></span></p> <br>
+                <p id = "profile-email"> Email: <span id = "profile-email-box"></span></p><br>
+            </div>
+
+            <!-- Middle column: User's [itineraries] -->
+            <div id = "profile-mid-column">
+
+                <h2 class = "itinerary-list-container-header"> Itineraries </h2>
+                <div class = "itinerary-list-container">
+                
+                    <ul class = "itinerary-list">
+    
+                    </ul>
+    
+                </div>
+
+            </div>
+
+            <!-- Right-Most Column: User's [forum posts] -->
+            <div id = "profile-right-column">
+
+                <h2 class = "itinerary-list-container-header"> Forum Posts </h2>
+                <div class = "itinerary-list-container">
+                
+                    <ul class = "itinerary-list">
+    
+                    </ul>
+    
+                </div>
+
+            </div>
+
         </div>
        
     </main>

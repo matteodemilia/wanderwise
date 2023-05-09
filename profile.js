@@ -25,12 +25,19 @@ onAuthStateChanged(auth,(user)=>{
     if(user){
         const userId = user.uid;
         const userRef = child(ref(database), 'users/' + userId);
-        //displays user's first name on their profile
+        //displays user's "username" and their personal info on their profile
         get(userRef).then((snapshot) => {
             if(snapshot.exists()){
                 const userData = snapshot.val();
                 const firstName = userData.FirstName;
-                document.getElementById("username").textContent = firstName + "'s Profile";
+                const lastName = userData.LastName;
+                const email = userData.Email;
+
+                // display user information (private info)
+                document.getElementById("username").textContent = firstName + "'s Profile:";
+                document.getElementById("profile-first-name-box").textContent = firstName;
+                document.getElementById("profile-last-name-box").textContent = lastName;
+                document.getElementById("profile-email-box").textContent = email;
             }
             else{
                 console.log("No data available");
