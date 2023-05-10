@@ -546,7 +546,6 @@ body{
   margin-left: auto;
 }
 
-/* Style your postContainer as desired */
 #postContainer {
 	border: 2px solid var(--mint);
 	padding: 10px;
@@ -573,7 +572,7 @@ body{
 .post-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline; /* this will align the elements at the baseline */
+  align-items: baseline; 
 }
 
 .post-title{
@@ -626,6 +625,11 @@ body{
   margin-left: 20px;
   margin-right: 20px;
 
+}
+
+.github-repo{
+  font-size: 12px;
+  margin-left: 3%;
 }
 
 
@@ -897,6 +901,7 @@ margin-bottom: 5px;
 /*  [PROFILE]  */ 
 
 #profile-page-main{
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 
@@ -904,16 +909,17 @@ margin-bottom: 5px;
 
 #profile-left-column{
   margin-right: auto;
+  margin-top: 40px;
 }
 
 #profile-mid-column{
   margin-left: auto;
-  margin-right: 20%;
+  margin-right: 9%;
 }
 
 #profile-right-column{
   margin-left: 10%;
-  margin-right: 15%;
+  margin-right: 9%;
 }
 
 #username{

@@ -79,13 +79,14 @@ onAuthStateChanged(auth,(user)=>{
               const titleElement = document.createElement("h2");
               titleElement.id = "itinerary-title";
               titleElement.style.marginLeft = "10px"
+              titleElement.style.color = "var(--icon-gray)";
               titleElement.textContent = itineraryItem.Title;
               const startdateElement = document.createElement("span");
-              startdateElement.id = "itinerary-list-dates";
+              startdateElement.id = "date-posted-forum";
               startdateElement.style.marginLeft = "10px"
               startdateElement.textContent = formatDate(itineraryItem.Startdate);
               const enddateElement = document.createElement("span");
-              enddateElement.id = "itinerary-list-dates";
+              enddateElement.id = "date-posted-forum";
               enddateElement.textContent = " to " + formatDate(itineraryItem.Enddate); // Add "to" between start and end date
               itineraryItemElement.appendChild(titleElement);
               itineraryItemElement.appendChild(startdateElement);

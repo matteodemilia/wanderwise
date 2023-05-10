@@ -52,7 +52,7 @@
         <div style="flex-basis: 50%; height: 100%; overflow: hidden;">
             <h2>Explore Local and Tourist Attractions!</h2>
             <form id="search-form">
-                <input type="text" id="search-input" placeholder="Feeling Hungry?">
+                <input type="text" id="search-input" placeholder="Browse Recommendations">
                 <button type="submit">Search</button>
             </form>
 
@@ -66,6 +66,26 @@
             <script src="browse.js"></script>
         </div>
     </div>
+
+    <!-- Adding a marker on the map -->
+    <!-- // Add a marker to the map at the specified location -->
+    <script>
+    function initMap() {
+
+        // Obtain the latitude and longitude coordinates of the location using the Places API
+        // LatLng(32.715736, -117.161087);
+        var location = new google.maps.LatLng(36.1022, -115.1695);
+
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          icon: {
+            url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          }
+        });
+    }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXoRDh7iWXXaUe8bB52mRSIIInvxpScHk&libraries=places"></script>
 
 
     <!-- Footer of Main Dashboard -->

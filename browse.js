@@ -10,6 +10,19 @@ window.onload = function () {
 
   placesService = new google.maps.places.PlacesService(map);
 
+  // Obtain the latitude and longitude coordinates of the location using the Places API
+  var location = new google.maps.LatLng(36.1022, -115.1695);
+
+  // Add a marker to the map at the specified location
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    icon: {
+      url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    }
+  });
+
+
   // add event listener for the search form
   var form = document.getElementById('search-form');
   form.addEventListener('submit', function (event) {
