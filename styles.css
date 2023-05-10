@@ -865,6 +865,31 @@ margin-bottom: 5px;
   text-align: center;
 }
 
+/* --- ADDED 5/7/23 -T ----- */
+#map {
+  float: left;
+  width: 50%;
+  height: 200%;
+  position: absolute;
+
+}
+
+#search-results {
+  position: absolute;
+  width: 80%;
+  height: 100%;
+}
+
+
+.page-container {
+  display: flex;
+  height: 100vh;
+}
+
+
+
+
+/* ---------------------------------------------------------- */
 
 /* ---------------------------------------------------------- */
 

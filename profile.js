@@ -102,6 +102,12 @@ onAuthStateChanged(auth,(user)=>{
             // Grab all forum items from the snapshot
             const forumItems = snapshot.val();
 
+            const allForumPosts = [];
+          
+        
+       
+      
+    
         });
         
     }
