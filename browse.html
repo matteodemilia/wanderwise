@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="styles.css" />
     <title>Browse</title>
     <script src="dropdown.js"></script>
-    
+
 
 </head>
+
 <body>
     <!-- Header of Browse Page -->
-    <header class = "headbar">
+    <header class="headbar">
         <!-- Wanderwise [LOGO] -->
-        <div class = "logo">
-            <a href = "index.html">
-                <img src = "wanderwiseicon-2.png" alt = "LOGO" >
+        <div class="logo">
+            <a href="index.html">
+                <img src="wanderwiseicon-2.png" alt="LOGO">
             </a>
-        </div> 
+        </div>
 
         <!-- Functionality Links -->
         <nav class="headbarNav2">
             <ul>
-                <li><button class = headbarButton> <a href = "forum.html">Forum</a></button></li>
-                <li><button class = headbarButton> <a href = "itinerary.html">Itinerary</a></button></li>
+                <li><button class=headbarButton> <a href="forum.html">Forum</a></button></li>
+                <li><button class=headbarButton> <a href="itinerary.html">Itinerary</a></button></li>
             </ul>
         </nav>
-   
+
         <!-- Account Icon -->
         <div class="headbarAcct">
             <div class="dropdown">
@@ -36,30 +38,40 @@
                 <div class="dropdown-content">
                     <a id="login-drop" href="login.html">Login</a>
                     <a id="signup-drop" href="signup.html">Sign-up</a>
-                    <a href="faq.html">  FAQ  </a>
+                    <a href="faq.html"> FAQ </a>
                 </div>
             </div>
         </div>
-        
+
         <!-- <img src = "wanderwiseicon.png" alt = "LOGO" class = "logo" > -->
     </header>
 
     <!-- <h1 id = "browse-title">Browse Recommendations</h1> -->
-    <body>
-        <form id="search-form">
-            <input type="text" id="search-input" placeholder="Search for a city">
-            <button type="submit">Search</button>
-        </form>
-        
-          <div id="search-results" style="height: 200px"></div>
-          <div id="map" style="height: 300px"></div>
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXoRDh7iWXXaUe8bB52mRSIIInvxpScHk&libraries=places"></script>
-          <script src="browse.js"></script>
-    </body>
+    <!-- fixed browse -T 5/7/23 -->
+    <div style="display: flex; height: 100vh">
+        <div style="flex-basis: 50%; height: 100%; overflow: hidden;">
+            <h2>Explore Local and Tourist Attractions!</h2>
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Feeling Hungry?">
+                <button type="submit">Search</button>
+            </form>
+
+            <div id="search-results" style="height: 100%; overflow-y: auto;"></div>
+        </div>
+
+        <div style="flex-basis: 50%; height: 100%;">
+            <div id="map" style="height: 100%;"></div>
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXoRDh7iWXXaUe8bB52mRSIIInvxpScHk&libraries=places"></script>
+            <script src="browse.js"></script>
+        </div>
+    </div>
+
 
     <!-- Footer of Main Dashboard -->
     <footer class="footer">
         <p> 2023 Wanderwise group via CS-370 CSUSM </p>
     </footer>
 </body>
+
 </html>
