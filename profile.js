@@ -28,11 +28,11 @@ onAuthStateChanged(auth,(user)=>{
 
         // grab forum data 
         const forumRef = ref(database, "forum");
-        const userForumRef = child(forumRef, userId);
+        const userForumRef = child(ref(database), 'forum/'+ userId);
 
         // grab itinerary data 
         const itineraryRef = ref(database, "itinerary");
-        const userItineraryRef = child(itineraryRef, userId);
+        const userItineraryRef = child(ref(database), 'itinerary/'+ userId);
 
         //displays user's "username" and their personal info on their profile
         get(userRef).then((snapshot) => {
@@ -97,20 +97,8 @@ onAuthStateChanged(auth,(user)=>{
             }
         });
 
-        // FORUM COLUMN
-        onValue(userForumRef, (snapshot) => {
-            // Grab all forum items from the snapshot
-            const forumItems = snapshot.val();
-
-            const allForumPosts = [];
-          
         
-       
-      
-    
-        });
-        
-    }
+    } //end of if(user)
     
 });
 
