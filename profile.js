@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebas
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
 import { getDatabase, ref, child, get, onValue } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
-// Your web app's Firebase configuration
+// WanderWise Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
   authDomain: "wanderwise-f21a9.firebaseapp.com",
@@ -13,14 +13,16 @@ const firebaseConfig = {
   appId: "1:799016861840:web:1403232429bfe801249815"
 };
 
+// Initialize the Database
 const app = initializeApp(firebaseConfig);
 const auth= getAuth();
 const database = getDatabase(app);
 
 
-//trying to display {user}'s Profile
+// grab user for displaying user profile 
 const user = auth.currentUser;
 
+// Grab state change 
 onAuthStateChanged(auth,(user)=>{
     if(user){
         const userId = user.uid;
@@ -34,7 +36,7 @@ onAuthStateChanged(auth,(user)=>{
         const itineraryRef = ref(database, "itinerary");
         const userItineraryRef = child(ref(database), 'itinerary/'+ userId);
 
-        //displays user's "username" and their personal info on their profile
+        // displays user's first name and their personal info on their profile
         get(userRef).then((snapshot) => {
             if(snapshot.exists()){
                 const userData = snapshot.val();
@@ -55,7 +57,7 @@ onAuthStateChanged(auth,(user)=>{
             console.error(error);
         });
 
-        // ITINERARY COLUMN
+        // ITINERARY COLUMN (mini widget)
         onValue(userItineraryRef, (snapshot) => {
             // Get all itinerary items from the snapshot
             const itineraryItems = snapshot.val();

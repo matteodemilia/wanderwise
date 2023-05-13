@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebas
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
 import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
 
-// Your web app's Firebase configuration
+// Wanderwise Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
   authDomain: "wanderwise-f21a9.firebaseapp.com",
@@ -13,13 +13,13 @@ const firebaseConfig = {
   appId: "1:799016861840:web:1403232429bfe801249815"
 };
 
-//Initialize Database
+// Initialize the Database
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase(app);
 
 
-//Registering
+// Variable isolation / Registering 
 const register = document.getElementById("register-button");
 register.addEventListener("click", function(){
   const regEmail = document.getElementById("register-email").value;
@@ -33,7 +33,7 @@ register.addEventListener("click", function(){
     document.getElementById("reg-div").style.display="none";
     document.getElementById("result").innerHTML="Welcome!<br>"+regEmail+", your account has been created";
 
-    //save signup details in RT DB
+    // save signup details in Real time database 
     set(ref(database, 'users/'+ user.uid),{
       FirstName: regFirst,
       LastName: regLast,
@@ -41,7 +41,8 @@ register.addEventListener("click", function(){
 
     })
 
-    setTimeout(()=>{ //on success, redirect back to login page
+    // on success, redirect back to login page
+    setTimeout(()=>{ 
       window.location.replace("\login.html")
     }, 3000)
 
