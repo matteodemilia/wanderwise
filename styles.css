@@ -36,7 +36,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--light-white);
-  border-radius: 5px; /* rounds the corners of the border */
+  border-radius: 5px; 
   height: 60px;
   padding: 10px;
 }
@@ -45,7 +45,7 @@
 .logo img {
   height: 40px;
   
-  border-radius: 7px; /* rounds the corners of the border */
+  border-radius: 7px;
 }
 
 /* [HEADBAR] Style for the navigation links */
@@ -53,7 +53,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex; /* make the list items ordered horizontally */
+  display: flex; 
 }
 
 .headbarNav li {
@@ -76,7 +76,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex; /* make the list items ordered horizontally */
+  display: flex; 
 }
 
 .headbarNav2 li {
@@ -104,16 +104,16 @@
 
 /* [HEADBAR] central three buttons */ 
 .headbarButton {
-  background-color: var(--mint); /* Set the background color */
-  border: none; /* Remove the border */
-  padding: 10px 25px; /* Set the padding */
-  text-align: center; /* Center the text */
-  text-decoration: none; /* Remove the underline */
-  display: inline-block; /* Make it an inline element */
-  font-size: 16px; /* Set the font size */
-  margin: 4px 2px; /* Add some margin */
-  cursor: pointer; /* Add a cursor on hover */
-  border-radius: 20px; /* Curves corners of buttons */
+  background-color: var(--mint); 
+  border: none; 
+  padding: 10px 25px; 
+  text-align: center;
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 20px; 
 }
 
 /* [HEADBAR] [PROFILE] profile icon defaul */
@@ -314,21 +314,6 @@ label {
   color: var(--icon-gray);
 }
 
-/* Input boxes */ /*
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  display: block;
-  width: 97.5%;
-  padding: 6px;
-  margin-bottom: 15px;
-  font-size: 1.2em;
-  border-radius: 5px;
-  border-color: var(--lighter-grey);
-  border-width: 1px;
-  background-color: white;
-}
-*/
 .login-text,
 .login-email,
 .login-password {
@@ -500,7 +485,7 @@ body{
 }
 /* ---------------------------------------------------------- */
 
-/* [FORUM - Generated [4/16/23] currently broken*/
+/* [FORUM - */
 
 /* [FORUM title] */
 #forum-title {

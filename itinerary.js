@@ -4,7 +4,7 @@ import { getDatabase, ref, push, set, orderByChild, child, onValue, update } fro
 
 
 
-
+// WanderWise Firebase configuration 
 const firebaseConfig = {
     apiKey: "AIzaSyBhzOapGVBOPyq2mmJb5IVLLpjK0TEE5lY",
     authDomain: "wanderwise-f21a9.firebaseapp.com",
@@ -15,13 +15,13 @@ const firebaseConfig = {
     appId: "1:799016861840:web:e3ca8c68d58950bf249815"
   };
 
-
+// Initialize database 
 const app = initializeApp(firebaseConfig);
 const auth= getAuth();
 const database = getDatabase(app);
 
 
-
+// Reference itinerary database 
 const itineraryRef = ref(database, "itinerary");
 
 onAuthStateChanged(auth, (user) => {

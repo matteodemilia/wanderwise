@@ -60,7 +60,7 @@ if (login) {
         document.getElementById("result").innerHTML =
           "Sorry ! <br>" + errorMessage;
 
-      //displays error then sends user back to login
+      // catches and displays error to user during login fail 
         setTimeout(() => {
           document.getElementById("result-box").style.display = "none";
           document.getElementById("login-div").style.display = "inline";
