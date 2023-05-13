@@ -1,3 +1,4 @@
+//checking if user is logged in --> replace drop down
 document.addEventListener("DOMContentLoaded", function() {
   if(localStorage.getItem("isLoggedIn") === "true"){
     var profileLink = document.createElement("a");
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
   }
-  else{
+  else{ //when no user logged in
       var loginDropdown = document.getElementById("login-drop");
       var signupDropdown = document.getElementById("signup-drop");
       loginDropdown.innerHTML = '<a href="login.html">Login</a>';
