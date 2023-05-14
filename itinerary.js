@@ -27,45 +27,53 @@ const itineraryRef = ref(database, "itinerary");
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const userId = user.uid;
-    const userItineraryRef = child(itineraryRef, userId);
+    const userItineraryRef = child( itineraryRef, userId );
     // Listen for changes to the user's "itinerary" database
     onValue(userItineraryRef, (snapshot) => {
-      // Get all itinerary items from the snapshot
+
+      // get itinerary items 
       const itineraryItems = snapshot.val();
 
-      // Sort itinerary items by start date
-      const sortedItineraryItems = Object.values(itineraryItems).sort((a, b) => {
+      // sort by start date
+      const sortedItineraryItems = Object.values( itineraryItems).sort((a, b) => {
         return new Date(a.Startdate) - new Date(b.Startdate);
       });
 
-      // Clear the existing itinerary list container
+      // grab itineray container 
       const itineraryListContainer = document.querySelector(".itinerary-list-container");
       itineraryListContainer.innerHTML = "";
 
-      // Loop through each itinerary item and add it to the itinerary list container
+      // go through items and add to itinerary container
       for (const itineraryItem of sortedItineraryItems) {
-        // Create an itinerary item element
+
+        // grab div and create itinerary element
         const itineraryItemElement = document.createElement("div");
         itineraryItemElement.className = "itinerary";
 
-        // Add the itinerary item details to the element
-        const titleElement = document.createElement("h2");
+        // title element details 
+        const titleElement = document.createElement( "h2");
         titleElement.id = "itinerary-title";
         titleElement.style.marginLeft = "10px"
         titleElement.style.color = "var(--icon-gray)";
         titleElement.textContent = itineraryItem.Title;
-        const startdateElement = document.createElement("span");
+
+        // start date element details 
+        const startdateElement = document.createElement( "span");
         startdateElement.id = "date-posted-forum";
         startdateElement.style.marginLeft = "10px"
-        startdateElement.textContent = formatDate(itineraryItem.Startdate);
+        startdateElement.textContent = formatDate( itineraryItem.Startdate);
+
+        // end date element details 
         const enddateElement = document.createElement("span");
         enddateElement.id = "date-posted-forum";
-        enddateElement.textContent = " to " + formatDate(itineraryItem.Enddate); // Add "to" between start and end date
+        enddateElement.textContent = " to " + formatDate(itineraryItem.Enddate); 
+
+        // load elements
         itineraryItemElement.appendChild(titleElement);
         itineraryItemElement.appendChild(startdateElement);
         itineraryItemElement.appendChild(enddateElement);
 
-        // Add the itinerary item element to the itinerary list container
+        // post to itinerary container
         itineraryListContainer.appendChild(itineraryItemElement);
         itineraryListContainer.appendChild(document.createElement("hr"));
       }
@@ -73,6 +81,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// format date function - changes from long form to readable
 function formatDate(dateStr) {
   const date = new Date(dateStr);
   const month = date.getMonth() + 1;
@@ -81,53 +90,7 @@ function formatDate(dateStr) {
 }
 
 
-
-
-
-
-/*
-const forumRef = ref(database, "itinerary");
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const userId = user.uid;
-    const userForumRef = child(forumRef, userId);
-  // Listen for changes to the "forum" database
-    onValue(userForumRef, (snapshot) => {
-  // Get all posts from the snapshot
-    const userPosts = snapshot.val();
-
-    const allPosts = Object.values(userPosts);
-
-    // Clear the existing post container
-    const postContainer = document.querySelector(".itinerary-list-container");
-    postContainer.innerHTML = "";
-
-      for (const post of allPosts) {
-        const postElement = document.createElement("div");
-          postElement.className = "itinerary";
-        
-        const startdateElement = document.createElement("span");
-        startdateElement.id = "itinerary-title";
-        const enddateElement = document.createElement("span");
-        enddateElement.id = "itinerary-list-dates";
-        const titleElement = document.createElement("h2");
-        titleElement.id = "itinerary-title";
-        postElement.appendChild(titleElement);
-        postElement.appendChild(startdateElement);
-        postElement.appendChild(enddateElement);
-
-        postContainer.appendChild(postElement);
-        postContainer.appendChild(document.createElement("hr"));
-
-      }  
-    });
-  }
-});
-    
-*/
-
-
+// grab elements for itinerary
 const createItineraryButton = document.getElementById('create-itinerary-button');
 const modal = document.getElementById('add-item-modal');
 const modalContent = document.querySelector('.modal-content');
@@ -137,39 +100,40 @@ const submitButton = document.getElementById('submit-itinerary');
 const itineraryContainer = document.getElementById('itinerary-list');
 const itineraryForm = document.querySelector('.add-item-form');
 
+// declare itinerary array
 let itineraries = [];
 
-// Opens the "create-itinerary" window when button is pressed 
+// create itinerary buttono
 createItineraryButton.addEventListener('click', () => {
   modal.style.display = 'block';
 });
 
-// Closes the "create-itinerary" window when close button is pressed 
+// close itinerary button 
 closeButton.addEventListener('click', () => {
   modal.style.display = 'none';
 });
 
-// Closes the "create-itinerary" window when user clicks outside pop-up
+// close itinerary outside 
 window.addEventListener('click', (event) => {
   if (event.target === modal) {
     modal.style.display = 'none';
   }
 });
 
-// Resizes the pop-up if resizing occurs 
+// resizing the pop up
 window.addEventListener('resize', () => {
   modalContent.style.top = `${(window.innerHeight - modalContent.offsetHeight) / 2}px`;
   modalContent.style.left = `${(window.innerWidth - modalContent.offsetWidth) / 2}px`;
 });
 
-// reloading maybe? unsure 
+// reloading 
 window.addEventListener('load', () => {
   modalContent.style.top = `${(window.innerHeight - modalContent.offsetHeight) / 2}px`;
   modalContent.style.left = `${(window.innerWidth - modalContent.offsetWidth) / 2}px`;
 });
 
+// submit button
 itineraryForm.addEventListener('submit', (event) => {
-    // Prevent default submission event
     event.preventDefault();
 
     auth.onAuthStateChanged((user) => {
@@ -178,9 +142,10 @@ itineraryForm.addEventListener('submit', (event) => {
           return;
       }
 
+      // grab user id 
       const userId = user.uid;
 
-    // Grab submitted values of the modal 
+    // Grab submitted values
     const itineraryTitle = document.querySelector("#title").value;
     const itineraryStartDate = document.querySelector("#startdate").value;
     const itineraryEndDate = document.querySelector("#enddate").value;
@@ -253,17 +218,17 @@ function updateItineraryContainer() {
 
 //    [C A L E N D A R]
 
-// Get the calendar element
+// grab calendar element
 const calendar = document.querySelector('.calendar');
 
-// Get the current date
+// current date 
 const currentDate = new Date();
 
-// Display the current month and year
+// Displaying month and year 
 const currentMonthYear = document.querySelector('.current-month');
 currentMonthYear.innerHTML = currentDate.toLocaleString('default', { month: 'long' }) + ' ' + currentDate.getFullYear();
 
-// Set the calendar days
+// calendr days
 const daysElement = document.querySelector('.days');
 let days = '';
 
